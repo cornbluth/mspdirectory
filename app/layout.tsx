@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased">
       <head>
-        <meta name='impact-site-verification' value='ae0728ff-2fea-4ee0-8bc2-90d55c2a6ad6' />
+        <meta name='impact-site-verification' content='ae0728ff-2fea-4ee0-8bc2-90d55c2a6ad6' />
       </head>
       <body className="min-h-full flex flex-col bg-gray-50 text-gray-900">
         <Navbar />
