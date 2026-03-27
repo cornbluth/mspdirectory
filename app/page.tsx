@@ -7,6 +7,7 @@ export default function HomePage() {
 
   return (
     <main>
+      <p style={{display:'none'}}>Impact-Site-Verification: ae0728ff-2fea-4ee0-8bc2-90d55c2a6ad6</p>
       {/* Hero */}
       <section className="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
