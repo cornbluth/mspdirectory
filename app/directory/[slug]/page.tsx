@@ -1,0 +1,168 @@
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { getMSPBySlug, msps } from "@/lib/mock-data";
+import type { Metadata } from "next";
+
+interface PageProps {
+  params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  return msps.map((m) => ({ slug: m.slug }));
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const msp = getMSPBySlug(slug);
+  if (!msp) return { title: "MSP Not Found" };
+  return {
+    title: `${msp.name} | MSPDirectory.io`,
+    description: msp.tagline,
+  };
+}
+
+export default async function MSPProfilePage({ params }: PageProps) {
+  const { slug } = await params;
+  const msp = getMSPBySlug(slug);
+  if (!msp) notFound();
+
+  return (
+    <main className="max-w-5xl mx-auto px-4 py-10">
+      <Link href="/directory" className="text-sm text-blue-600 hover:text-blue-700 mb-6 inline-block">
+        ← Back to Directory
+      </Link>
+
+      <div className="bg-white border border-gray-200 rounded-2xl p-8 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+          <div>
+            <div className="flex items-center gap-3 mb-2">
+              <h1 className="text-3xl font-bold text-gray-900">{msp.name}</h1>
+              {msp.featured && (
+                <span className="text-xs bg-blue-50 text-blue-700 px-2 py-1 rounded-full font-medium">
+                  Featured
+                </span>
+              )}
+            </div>
+            <p className="text-gray-500 text-lg mb-1">{msp.tagline}</p>
+            <p className="text-sm text-gray-400">
+              {msp.location.city}, {msp.location.state} · Founded {msp.founded} · {msp.employees}{" "}
+              employees
+            </p>
+          </div>
+          <div className="flex flex-col gap-2 sm:items-end">
+            <div className="flex items-center gap-1 text-yellow-500 text-lg">
+              <span>★</span>
+              <span className="font-bold text-gray-800">{msp.rating}</span>
+              <span className="text-sm text-gray-400">({msp.reviewCount} reviews)</span>
+            </div>
+            <a
+              href={msp.affiliateUrl ?? msp.website}
+              target="_blank"
+              rel="noopener noreferrer sponsored"
+              className="bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-lg hover:bg-blue-700 transition-colors text-sm text-center"
+            >
+              Visit Website →
+            </a>
+            <a
+              href={`tel:${msp.phone}`}
+              className="text-sm text-gray-500 hover:text-gray-700 text-center"
+            >
+              {msp.phone}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Main content */}
+        <div className="lg:col-span-2 space-y-6">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3">About {msp.name}</h2>
+            <p className="text-gray-600 leading-relaxed">{msp.description}</p>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded-2xl p-6">
+            <h2 className="text-lg font-semibold text-gray-900 mb-3">Specialties</h2>
+            <div className="flex flex-wrap gap-2">
+              {msp.specialties.map((s) => (
+                <Link
+                  key={s}
+                  href={`/directory?specialty=${encodeURIComponent(s)}`}
+                  className="bg-blue-50 text-blue-700 text-sm px-3 py-1.5 rounded-full hover:bg-blue-100 transition-colors"
+                >
+                  {s}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Sidebar */}
+        <div className="space-y-6">
+          <div className="bg-white border border-gray-200 rounded-2xl p-5">
+            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+              Tech Stack
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {msp.techStack.map((t) => (
+                <span
+                  key={t}
+                  className="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 rounded-full"
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded-2xl p-5">
+            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+              Certifications
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {msp.certifications.map((c) => (
+                <span
+                  key={c}
+                  className="bg-green-50 text-green-700 text-xs px-2.5 py-1 rounded-full font-medium"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded-2xl p-5">
+            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+              Company Size Served
+            </h3>
+            <div className="space-y-1.5">
+              {msp.companySizes.map((s) => (
+                <div key={s} className="text-sm text-gray-600">
+                  ✓ {s}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white border border-gray-200 rounded-2xl p-5">
+            <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide mb-3">
+              Contact
+            </h3>
+            <div className="space-y-2 text-sm text-gray-600">
+              <div>{msp.phone}</div>
+              <div>{msp.email}</div>
+              <a
+                href={msp.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:underline block"
+              >
+                {msp.website.replace(/^https?:\/\//, "")}
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+}
