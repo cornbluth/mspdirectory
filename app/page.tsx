@@ -40,7 +40,7 @@ export default function HomePage() {
       <section className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap gap-8 justify-center text-sm text-gray-600">
           <div>
-            <span className="font-bold text-gray-900 text-xl">500+</span> MSPs Listed
+            <span className="font-bold text-gray-900 text-xl">1,000+</span> MSPs Listed
           </div>
           <div>
             <span className="font-bold text-gray-900 text-xl">48</span> States Covered
