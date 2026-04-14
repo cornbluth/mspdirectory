@@ -8,6 +8,7 @@ import {
   US_STATES,
 } from "@/lib/mock-data";
 import MSPCard from "@/components/MSPCard";
+import { AffiliateCTABanner } from "@/components/AffiliateCTA";
 
 interface PageProps {
   searchParams: Promise<{
@@ -163,9 +164,13 @@ export default async function DirectoryPage({ searchParams }: PageProps) {
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {results.map((msp) => (
-                <MSPCard key={msp.id} msp={msp} />
-              ))}
+              {results.flatMap((msp, i) => {
+                const card = <MSPCard key={msp.id} msp={msp} />;
+                if ((i + 1) % 5 === 0 && i < results.length - 1) {
+                  return [card, <AffiliateCTABanner key={`banner-${i}`} />];
+                }
+                return [card];
+              })}
             </div>
           )}
         </div>

@@ -35,7 +35,7 @@ export default function MSPCard({ msp }: { msp: MSP }) {
           <span className="text-gray-400">({msp.reviewCount})</span>
         </div>
         <Link
-          href={`/directory/${msp.slug}`}
+          href={`/msp/${msp.slug}`}
           className="text-sm font-medium text-blue-600 hover:text-blue-700"
         >
           View Profile →

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { TOP_50_CITIES, getCityBySlug } from "@/lib/cities";
 import { msps } from "@/lib/mock-data";
 import MSPCard from "@/components/MSPCard";
+import { AffiliateCTABanner } from "@/components/AffiliateCTA";
 
 interface PageProps {
   params: Promise<{ state: string; city: string }>;
@@ -107,9 +108,13 @@ export default async function CityPage({ params }: PageProps) {
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {displayMSPs.map((msp) => (
-            <MSPCard key={msp.id} msp={msp} />
-          ))}
+          {displayMSPs.flatMap((msp, i) => {
+            const card = <MSPCard key={msp.id} msp={msp} />;
+            if ((i + 1) % 5 === 0 && i < displayMSPs.length - 1) {
+              return [card, <AffiliateCTABanner key={`banner-${i}`} />];
+            }
+            return [card];
+          })}
         </div>
       )}
 
