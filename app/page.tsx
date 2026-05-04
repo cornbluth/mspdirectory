@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { msps, SPECIALTIES } from "@/lib/mock-data";
 import MSPCard from "@/components/MSPCard";
+import AffiliateCTA from "@/components/AffiliateCTA";
 
 export default function HomePage() {
   const featured = msps.filter((m) => m.featured);
@@ -85,6 +86,11 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Recommended Tools */}
+      <section className="max-w-7xl mx-auto px-4 py-14">
+        <AffiliateCTA />
       </section>
 
       {/* CTA */}
