@@ -11,7 +11,7 @@ interface Vendor {
 }
 
 const VENDORS: Vendor[] = [
-  { id: "acronis", name: "Acronis Cyber Protect", description: "Unified backup & advanced cybersecurity in one platform.", cta: "Try Free", href: "#acronis", active: false },
+  { id: "acronis", name: "Acronis Cyber Protect", description: "Unified backup & advanced cybersecurity in one platform.", cta: "Try Free", href: "https://www.tkqlhce.com/click-101726760-14426269", active: true },
   { id: "atera", name: "Atera RMM", description: "All-in-one RMM + PSA. Per-technician pricing, unlimited endpoints.", cta: "Try Free 30 Days", href: "https://www.atera.com/partners/", active: true },
   { id: "syncro", name: "Syncro MSP", description: "RMM, PSA, and billing in one platform built for MSPs.", cta: "Start Free Trial", href: "https://syncromsp.com/", active: true },
   { id: "superops", name: "SuperOps", description: "AI-native PSA + RMM built for growth-stage MSPs.", cta: "Book a Demo", href: "https://superops.com/", active: true },
