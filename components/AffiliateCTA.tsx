@@ -12,13 +12,13 @@ interface Vendor {
 
 const VENDORS: Vendor[] = [
   { id: "acronis", name: "Acronis Cyber Protect", description: "Unified backup & advanced cybersecurity in one platform.", cta: "Try Free", href: "https://www.tkqlhce.com/click-101726760-14426269", active: true },
+  { id: "nordvpn", name: "NordVPN", description: "Secure VPN for remote workers and distributed teams. MSP-friendly bulk licensing.", cta: "Get NordVPN", href: "http://www.jdoqocy.com/click-7928547-13382109", active: true },
   { id: "atera", name: "Atera RMM", description: "All-in-one RMM + PSA. Per-technician pricing, unlimited endpoints.", cta: "Try Free 30 Days", href: "https://www.atera.com/partners/", active: true },
   { id: "syncro", name: "Syncro MSP", description: "RMM, PSA, and billing in one platform built for MSPs.", cta: "Start Free Trial", href: "https://syncromsp.com/", active: true },
   { id: "superops", name: "SuperOps", description: "AI-native PSA + RMM built for growth-stage MSPs.", cta: "Book a Demo", href: "https://superops.com/", active: true },
   { id: "keeper", name: "Keeper Security", description: "Zero-knowledge password management and privileged access for MSPs.", cta: "Get Business Trial", href: "https://www.keepersecurity.com/partners/", active: true },
   { id: "bitdefender", name: "Bitdefender GravityZone", description: "Enterprise-grade endpoint protection purpose-built for MSPs.", cta: "Become a Partner", href: "https://www.bitdefender.com/business/partner-program/", active: true },
   { id: "veeam", name: "Veeam", description: "Data protection and ransomware recovery for MSPs.", cta: "Become a Partner", href: "https://www.veeam.com/partnerships/", active: true },
-  {  id: "nordvpn", name: "NordVPN", description: "Secure VPN for remote workers and distributed teams. MSP-friendly bulk licensing.", cta: "Get NordVPN", href: "http://www.jdoqocy.com/click-7928547-13382109", active: true },
   { id: "hudu", name: "Hudu", description: "Fast, modern IT documentation built exclusively for MSPs.", cta: "Start Free Trial", href: "https://www.hudu.com/", active: true },
   { id: "ninjaone", name: "NinjaOne", description: "The #1-rated RMM. Manage, patch, and support every endpoint from one pane.", cta: "Get a Demo", href: "#ninjaone", active: false },
 ];
